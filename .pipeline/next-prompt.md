@@ -4,18 +4,17 @@ Retomamos Therapy. --skip-boot
 - therapy/estado ✅ Engram #21
 - Fase 2 ✅ completa
 - Fase 2B ✅ completa
-- Fase 3 en progreso — T1✅ T2✅ T3✅ T4-T7✅ T8✅ T9✅ T10✅ T11✅
+- Fase 3 en progreso — T1✅ T2✅ T3✅ T4-T7✅ T8✅ T9✅ T10✅ T11✅ T12✅
 - Proyecto en /home/soporte/proyectos/kinesio
 
 ## Completado en sesión anterior
-- T8-AUTH-SERVER: middleware usa `getSessionCookie` de better-auth/cookies
-- T9-AUTH-CLIENT: auth-client.ts, use-session.ts, providers.tsx, login-form.tsx, admin/login/page.tsx
-- T10-SEED-ADMIN: scripts/seed-admin.ts con hashPassword de better-auth/crypto
-- T11-API-SERVICES: GET /api/services con cache 60s, Zod validation, src/lib/validators/services.ts
-- Fix: @tailwindcss/postcss instalado, db/index.ts non-null assertion para build limpio
+- T8-T10: Better Auth server + client + seed admin
+- T11: GET /api/services con cache 60s y Zod
+- T12: GET /api/availability — lógica pura en src/lib/availability.ts, 18 tests (18/18 PASS),
+  manejo de recurring blocked slots, timezone AR (UTC-3 hardcoded, sin DST)
 
 ## Acción inmediata
-Continuar Fase 3 desde T12-API-AVAILABILITY.
+Continuar Fase 3 desde T13-API-CREATE-APPT.
 NO spawnear orquestador como subagente.
 NO releer archivos de diseño inline.
 DAG State: solo resumen ligero.
