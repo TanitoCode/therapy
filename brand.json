@@ -1,0 +1,223 @@
+{
+  "project": "therapy",
+  "schema_version": 2,
+  "version": 1,
+  "created_at": "2026-04-29",
+
+  "identity": {
+    "name": "Therapy",
+    "tagline": "Movimiento que sana, cuidado que transforma",
+    "slogan": "Movimiento que sana, cuidado que transforma",
+    "tone": "profesional, cálido, editorial premium, cercano sin perder rigor",
+    "personality": ["confiable", "experto", "humano", "sereno", "preciso"],
+    "target": "Pacientes B2C de todas las edades en Buenos Aires que buscan un consultorio de kinesiología profesional, con trato cálido y resultados medibles",
+    "voice": {
+      "formality": 2,
+      "complexity": 2,
+      "character": 2,
+      "emotion": 4
+    }
+  },
+
+  "voice_tone": {
+    "personality": ["profesional", "cálido", "cercano", "confiable", "sin jargon médico"],
+    "avoid": ["clínico frío", "corporativo genérico", "urgencia falsa", "tecnicismos"],
+    "sample_cta": "Reservar turno",
+    "sample_tagline": "Movimiento que sana, cuidado que transforma",
+    "sample_headline": "Tu cuerpo merece el mejor cuidado — y la atención que se lo da",
+    "sample_body": "Cada tratamiento es único porque cada cuerpo tiene su historia. En Therapy te acompañamos en cada etapa de tu recuperación.",
+    "locale": "es-AR"
+  },
+
+  "colors": {
+    "primary":    { "hex": "#B85C38", "use": "CTA principal, elementos activos, hover states" },
+    "secondary":  { "hex": "#7B8C76", "use": "Acentos secundarios, badges, highlights de secciones" },
+    "accent":     { "hex": "#C49A6C", "use": "Detalles decorativos, separadores, ornamentos editoriales" },
+    "neutral":    { "hex": "#FAF8F5", "use": "Canvas base, fondo de página, superficie limpia" },
+    "text_dark":  { "hex": "#1C1917", "use": "Texto principal sobre fondos claros (contrast ratio >= 4.5:1)" },
+    "text_light": { "hex": "#FAF8F5", "use": "Texto sobre fondos oscuros o sobre terracota primario" }
+  },
+
+  "palette": {
+    "primary":          "#B85C38",
+    "primary_hover":    "#9E4D2E",
+    "secondary":        "#7B8C76",
+    "secondary_hover":  "#67786A",
+    "accent":           "#C49A6C",
+    "background":       "#FAF8F5",
+    "surface":          "#F5F1EB",
+    "surface_secondary":"#EDE8DF",
+    "text":             "#1C1917",
+    "text_muted":       "#78716C",
+    "text_light":       "#FAF8F5",
+    "border":           "#E2DDD6",
+    "border_subtle":    "#EDE8DF"
+  },
+
+  "typography": {
+    "heading": {
+      "family": "Fraunces",
+      "weights": ["300", "400", "600", "700", "900"],
+      "style": "serif display variable — eje opsz (optical size), warm, editorial",
+      "source": "google_fonts",
+      "url": "https://fonts.google.com/specimen/Fraunces",
+      "css_import": "@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap')"
+    },
+    "body": {
+      "family": "Plus Jakarta Sans",
+      "weights": ["400", "500", "600"],
+      "style": "humanista sans — alta legibilidad, neutral cálido, versátil para UI",
+      "source": "google_fonts",
+      "url": "https://fonts.google.com/specimen/Plus+Jakarta+Sans",
+      "css_import": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap')"
+    },
+    "accent": {
+      "family": "JetBrains Mono",
+      "weights": ["400", "500"],
+      "style": "mono — para admin panel, fechas/horas, códigos de turno",
+      "source": "google_fonts",
+      "url": "https://fonts.google.com/specimen/JetBrains+Mono",
+      "use": "Datos de turno (fecha, hora, ID), panel de administración, labels técnicos"
+    }
+  },
+
+  "typography_pair": {
+    "heading": "Fraunces",
+    "body": "Plus Jakarta Sans",
+    "accent": "JetBrains Mono",
+    "rationale": "Fraunces aporta el caracter editorial-warm del preset (serif display variable con optical size que escala elegantemente de 96px a 16px). Plus Jakarta Sans es humanista con proporciones generosas — amable sin ser informal — ideal para body en contexto médico donde la legibilidad importa. JetBrains Mono reservado para datos funcionales de agenda. El par evita Inter como heading (anti_pattern HIGH) y comunica precisión cálida en vez de frialdad SaaS."
+  },
+
+  "motion": {
+    "ease": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "ease_label": "expo-out luxury",
+    "duration_reveal": "700ms",
+    "duration_hero": "900ms",
+    "stagger": "80ms",
+    "scroll_smooth": "Lenis",
+    "effects": [
+      "text-reveal al scroll (headings editoriales)",
+      "stagger-lists (servicios, beneficios, FAQ)",
+      "card-hover-lift (terracota glow sutil)",
+      "nav blur-on-scroll (transparente → frosted glass)"
+    ]
+  },
+
+  "mood_vector": {
+    "editorial": 9,
+    "minimal": 5,
+    "luxury": 7,
+    "brutalist": 0,
+    "immersive": 3,
+    "playful": 2,
+    "retro": 1,
+    "industrial": 0
+  },
+
+  "reference_ids": ["nytimes", "medium", "aesop"],
+
+  "anti_patterns_HIGH": [
+    "NO paleta teal/cyan SaaS genérica (#0d9488, #14b8a6, #06b6d4)",
+    "NO Inter como heading font (preset pide serif display elegante)",
+    "NO cards uniformes con shadow-sm en grid 3 columnas idénticas",
+    "NO hero con gradient mesh + button rounded-lg genérico",
+    "NO stock photos de médicos/doctores sonriendo forzadamente (Unsplash medical)",
+    "NO iconos lucide outline uniformes en cada feature",
+    "NO tipografía heading sin-serif genérica (Roboto, Open Sans, Lato)",
+    "NO azul médico corporativo (#2563eb, #3b82f6) en ningún elemento",
+    "NO border-radius > 6px en cards y contenedores principales (anti-SaaS-bubble)",
+    "NO gradientes tímidos púrpura/lavender sobre blanco"
+  ],
+
+  "extraction_metadata": {
+    "source": "preset + intent + design_system",
+    "preset_row": 1,
+    "preset_name": "editorial-magazine",
+    "confidence": 90,
+    "figma_raster_detected": false,
+    "palette_hex_raw": ["#B85C38", "#7B8C76", "#C49A6C", "#FAF8F5", "#F5F1EB", "#EDE8DF", "#1C1917"],
+    "typography_inferred_confidence": 95,
+    "awesome_design_md_consulted": [],
+    "fallback_reason": "extraction_status failed — paleta y tipografía tomadas de css-foundation confirmada por usuario en VDC (Paso 1.5)",
+    "generated_at": "2026-04-29"
+  },
+
+  "logo_specs": {
+    "concept": "Wordmark tipográfico basado en Fraunces italic (peso 300-400, optical size máximo) — la letra 'T' inicial puede usarse como symbol standalone. La palabra 'Therapy' en serif display transmite precisión cálida. Sin símbolo médico genérico. El isotipo opcional sería una forma gestual abstracta que evoca movimiento fluido del cuerpo (trazo curvo único, no anatómico explícito).",
+    "style": "wordmark principal + symbol gestual opcional",
+    "colors": ["terracota #B85C38", "off-black #1C1917"],
+    "color_bg_dark": "#1C1917",
+    "color_bg_light": "#FAF8F5",
+    "dont": [
+      "símbolo médico genérico (cruz roja, stethoscope, persona corriendo clipart)",
+      "sans-serif genérica como base del wordmark",
+      "azul médico corporativo",
+      "gradiente de colores en el logo",
+      "más de 2 colores en el logo principal"
+    ]
+  },
+
+  "image_style": {
+    "hero_description": "Fotografía editorial de consultorio de kinesiología con luz natural cálida lateral. Un kinesiólogo trabajando con un paciente — manos sobre espalda o hombro en posición de evaluación. Ambiente: sala luminosa, piso de madera clara o concreto pulido, plantas verdes fuera de foco al fondo. Paleta natural: cremas, tonos tierra, verde-salvia. Momento: concentración serena, no pose forzada. Estilo: edición cálida, leve grain de película, sin filtros oversaturados. Formato landscape 16:9.",
+    "mood": "warm, natural light, professional but approachable, editorial calm",
+    "photography_style": "editorial warm photography, window light, film grain, shallow depth of field, muted warm tones, natural interior",
+    "avoid": [
+      "stock photos de médicos sonriendo forzadamente a cámara",
+      "fondo blanco estéril de estudio",
+      "laboratorio o hospital genérico",
+      "ropa médica blanca o azul corporativa",
+      "equipamiento médico prominente (sin contexto humano)",
+      "saturación excesiva o filtros instagram",
+      "composición centrada simétrica tipo 'retrato corporativo'"
+    ]
+  },
+
+  "asset_specs": {
+    "logo": {
+      "width": 800,
+      "height": 400,
+      "bg": "transparent",
+      "formats": ["SVG", "PNG"],
+      "variants": ["color_dark", "color_light", "monochrome_black", "monochrome_white"]
+    },
+    "hero": {
+      "width": 1920,
+      "height": 1080,
+      "format": "JPG",
+      "variants": ["desktop_1920x1080", "mobile_768x1024"],
+      "quality": 85
+    },
+    "og_image": {
+      "width": 1200,
+      "height": 630,
+      "format": "JPG",
+      "bg": "#F5F1EB"
+    },
+    "favicon": {
+      "width": 512,
+      "height": 512,
+      "format": "PNG",
+      "bg": "transparent"
+    }
+  },
+
+  "prompt_ingredients": {
+    "style_tags": [
+      "editorial magazine photography",
+      "warm luxury healthcare",
+      "natural light interior",
+      "physiotherapy clinic",
+      "film grain warm tones",
+      "serif typography editorial",
+      "cream beige terracotta palette",
+      "professional approachable",
+      "Buenos Aires aesthetic",
+      "mindful wellness",
+      "human touch healing",
+      "architectural minimalism warm"
+    ],
+    "photo_style": "editorial warm photography with natural window light, shallow depth of field, muted terracotta and cream tones, film grain, professional healthcare setting with human warmth",
+    "logo_style": "elegant serif wordmark in Fraunces italic, terracotta on cream, minimal gestural symbol, no medical iconography",
+    "avoid_global": "watermark, text overlay, logo, UI elements, borders, frame, cartoon, 3D render, clipart, stock photo feel, cold blue medical, hospital aesthetic, white sterile background, oversaturated colors, symmetrical corporate portrait"
+  }
+}

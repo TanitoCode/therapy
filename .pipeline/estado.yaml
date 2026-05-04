@@ -1,0 +1,53 @@
+proyecto: "therapy"
+tipo: "web"
+estructura: "single-repo"
+stack:
+  frontend: "Next.js 15 App Router"
+  backend: "Next.js Route Handlers"
+  db: "Neon PostgreSQL"
+  orm: "Drizzle"
+  api: "REST"
+  auth: "Better Auth"
+  extras: ["Tailwind 4", "shadcn/ui", "Framer Motion", "Resend", "Upstash Redis", "Leaflet+OSM", "date-fns es-AR"]
+  design_system: "custom"
+  component_source: "custom"
+fase_actual: "fase_3_dev"
+fases_completadas:
+  planificacion: 20
+  arquitectura:
+    css: "completada"
+    visual_direction: "completada"
+    design: "completada"
+    security: 27
+  assets_creativos:
+    necesarios: true
+    branding: 28
+    image_backend: "n/a"
+    logo: "no-requerido"
+    images: "no-requerido"
+    video: "no-requerido"
+desarrollo:
+  total_tareas: 48
+  tarea_actual: 0
+  tareas_completadas: ["T0-INFRA", "T2-DB-SETUP", "T3-MOTION"]
+  tareas_en_progreso: ["T1-STYLE", "T4-SCHEMA-USERS", "T5-SCHEMA-SERVICES", "T6-SCHEMA-PATIENTS", "T7-SCHEMA-APPTS"]
+  tareas_fallidas: []
+  ultimo_save: "2026-04-30T00:00:00Z"
+certificacion:
+  seo: null
+  seo_tier: "pending"
+  api_tester: null
+  performance: null
+  reality_checker: null
+  a11y_violations: 0
+  bundle_size_pass: true
+  lint_pass: true
+publicacion:
+  git_commit: null
+  deploy_url: null
+phase_gate_retries: 0
+recertification_cycles: 0
+backup_disk: "/home/soporte/proyectos/kinesio/.pipeline/estado.yaml"
+recovered: true
+qa_mode: "full"
+engram_degraded: false

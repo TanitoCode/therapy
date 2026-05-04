@@ -1,0 +1,782 @@
+/* =============================================================================
+   Therapy — Consultorio de Kinesiología, Buenos Aires
+   Design System: editorial-magazine / warm-luxury
+   Mood: warm, deliberate, serif-led, generous whitespace
+   Stack: Next.js 15 App Router + Tailwind CSS 4 + shadcn/ui
+   Dark mode: class-based (.dark on <html>)
+   Generated: 2026-04-28
+   ============================================================================= */
+
+@import "tailwindcss";
+
+/* -----------------------------------------------------------------------------
+   Google Fonts — Space is reserved via next/font in src/lib/fonts.ts
+   (no @import here — next/font injects the link tag server-side)
+   ----------------------------------------------------------------------------- */
+
+/* =============================================================================
+   1. LAYER BASE — tokens + CSS custom properties
+   ============================================================================= */
+
+@layer base {
+
+  /* ---------------------------------------------------------------------------
+     1.1  LIGHT MODE — root tokens
+     --------------------------------------------------------------------------- */
+  :root {
+    color-scheme: light;
+
+    /* --- Color palette — warm light mode --- */
+
+    /* Backgrounds — 3-layer depth */
+    --bg-canvas:       #FAF8F5;   /* off-white canvas, warmest white possible */
+    --bg-primary:      #F5F1EB;   /* slightly deeper cream, main page surface */
+    --bg-secondary:    #EDE8DF;   /* warm beige, card/section surfaces */
+    --bg-tertiary:     #E3DDD3;   /* deeper beige, subtle dividers/hover */
+    --bg-overlay:      rgba(250, 248, 245, 0.92); /* frosted overlay for sheets/modals */
+
+    /* Text — 4-layer hierarchy */
+    --text-primary:    #1C1917;   /* off-black (stone-900 warm tint) — headings, body */
+    --text-secondary:  #44403C;   /* stone-700 — sub-labels, captions */
+    --text-tertiary:   #78716C;   /* stone-500 — placeholders, muted */
+    --text-emphasis:   #0F0D0C;   /* near-black for high-emphasis headings */
+    --text-inverse:    #FAF8F5;   /* text on dark/colored surfaces */
+    --text-on-accent:  #FAF8F5;   /* text on terracota/salvia CTA buttons */
+
+    /* Brand colors */
+    --color-terracota:       #B85C38;   /* warm sienna-terracota — primary CTA */
+    --color-terracota-hover: #9E4D2E;   /* darker hover state */
+    --color-terracota-light: #D97F60;   /* lighter tint, accents */
+    --color-salvia:          #7B8C76;   /* sage green — secondary accent */
+    --color-salvia-hover:    #66786A;   /* sage hover */
+    --color-salvia-light:    #A3B09E;   /* sage tint */
+    --color-bisque:          #C49A6C;   /* warm gold/bisque — decorative highlights */
+    --color-bisque-light:    #DEC49A;   /* lighter bisque for ornamental lines */
+
+    /* Semantic / interactive aliases */
+    --color-primary:         var(--color-terracota);
+    --color-primary-hover:   var(--color-terracota-hover);
+    --color-primary-light:   var(--color-terracota-light);
+    --color-secondary:       var(--color-salvia);
+    --color-secondary-hover: var(--color-salvia-hover);
+
+    /* Feedback tokens */
+    --color-success:         #5A7A5C;   /* muted green, coherent with palette */
+    --color-success-bg:      #EEF4EE;
+    --color-warning:         #B07C2A;   /* warm amber */
+    --color-warning-bg:      #FDF5E4;
+    --color-error:           #9B3A3A;   /* muted red */
+    --color-error-bg:        #F8EDED;
+    --color-info:            #476A7A;   /* muted blue-grey */
+    --color-info-bg:         #EBF1F4;
+
+    /* Border & divider */
+    --border-color:          #D4CEC5;   /* warm grey-beige */
+    --border-color-subtle:   #E8E3DB;   /* very subtle, almost invisible */
+    --border-color-emphasis: #B0A99E;   /* stronger border for focused inputs */
+
+    /* RGB companion variables for alpha compositing */
+    --color-terracota-rgb:   184, 92, 56;
+    --color-salvia-rgb:      123, 140, 118;
+    --bg-canvas-rgb:         250, 248, 245;
+    --text-primary-rgb:      28, 25, 23;
+
+    /* --- Typography --- */
+    /* Font families injected via CSS variable from next/font (src/lib/fonts.ts) */
+    --font-display:    var(--font-fraunces), "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body:       var(--font-plus-jakarta), "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-mono:       "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+
+    /* Font scale — fluid, editorial-luxury tones:
+       - Hero: very generous for editorial drama
+       - Body: comfortable reading size (not compressed)
+       Note: clamp(min, preferred, max) where preferred uses vi units */
+    --text-xs:         0.75rem;                          /* 12px — fine print */
+    --text-sm:         0.875rem;                         /* 14px — captions, labels */
+    --text-base:       clamp(1rem, 1vw + 0.75rem, 1.125rem);      /* 16–18px — body */
+    --text-lg:         clamp(1.125rem, 1.25vw + 0.75rem, 1.25rem); /* 18–20px */
+    --text-xl:         clamp(1.25rem, 1.5vw + 0.75rem, 1.5rem);   /* 20–24px */
+    --text-2xl:        clamp(1.5rem, 2vw + 0.75rem, 2rem);        /* 24–32px */
+    --text-3xl:        clamp(2rem, 2.5vw + 1rem, 2.75rem);        /* 32–44px */
+    --text-4xl:        clamp(2.5rem, 3.5vw + 1rem, 4rem);         /* 40–64px */
+    --text-hero:       clamp(3.5rem, 6vw + 1.5rem, 7rem);         /* 56–112px — editorial drama */
+
+    /* Line heights — editorial-luxury requires generous leading */
+    --leading-none:    1;
+    --leading-tight:   1.15;   /* display headings */
+    --leading-snug:    1.3;    /* subheadings */
+    --leading-normal:  1.6;    /* body text — more open than 1.5 default */
+    --leading-relaxed: 1.75;   /* long-form reading */
+    --leading-loose:   2;      /* spaced text blocks */
+
+    /* Letter spacing — editorial luxury: tight display, airy labels */
+    --tracking-tighter: -0.03em;  /* hero/display headings */
+    --tracking-tight:   -0.02em;  /* subheadings */
+    --tracking-normal:   0em;
+    --tracking-wide:     0.04em;  /* all-caps labels, tags */
+    --tracking-wider:    0.08em;  /* ornamental small caps */
+    --tracking-widest:   0.15em;  /* section eyebrow labels */
+
+    /* Font weights */
+    --weight-light:    300;
+    --weight-regular:  400;
+    --weight-medium:   500;
+    --weight-semibold: 600;
+    --weight-bold:     700;
+    --weight-black:    900;
+
+    /* --- Spacing — 4px base, but generous section rhythm --- */
+    --space-px:   1px;
+    --space-0-5:  0.125rem;  /* 2px */
+    --space-1:    0.25rem;   /* 4px */
+    --space-1-5:  0.375rem;  /* 6px */
+    --space-2:    0.5rem;    /* 8px */
+    --space-2-5:  0.625rem;  /* 10px */
+    --space-3:    0.75rem;   /* 12px */
+    --space-4:    1rem;      /* 16px */
+    --space-5:    1.25rem;   /* 20px */
+    --space-6:    1.5rem;    /* 24px */
+    --space-7:    1.75rem;   /* 28px */
+    --space-8:    2rem;      /* 32px */
+    --space-10:   2.5rem;    /* 40px */
+    --space-12:   3rem;      /* 48px */
+    --space-14:   3.5rem;    /* 56px */
+    --space-16:   4rem;      /* 64px */
+    --space-20:   5rem;      /* 80px */
+    --space-24:   6rem;      /* 96px */
+    --space-32:   8rem;      /* 128px */
+    --space-40:   10rem;     /* 160px */
+
+    /* Section rhythm — editorial-luxury is very generous between sections */
+    --space-section:       clamp(5rem, 8vw, 10rem);    /* 80–160px between sections */
+    --space-section-inner: clamp(3rem, 5vw, 6rem);     /* 48–96px within section */
+
+    /* --- Border radius — editorial-luxury: sharp with occasional roundness --- */
+    --radius-none:   0px;
+    --radius-sm:     2px;    /* almost sharp — editorial precision */
+    --radius-base:   4px;    /* default inputs, buttons */
+    --radius-md:     6px;    /* cards */
+    --radius-lg:     8px;    /* larger cards, modals */
+    --radius-xl:     12px;   /* featured elements */
+    --radius-2xl:    16px;   /* hero cards */
+    --radius-full:   9999px; /* pills, avatars */
+
+    /* --- Shadows — warm, diffuse, luxury quality --- */
+    /* Shadows carry a warm amber undertone — not neutral grey */
+    --shadow-xs:      0 1px 2px rgba(28, 25, 23, 0.06);
+    --shadow-sm:      0 1px 3px rgba(28, 25, 23, 0.08), 0 1px 2px rgba(28, 25, 23, 0.05);
+    --shadow-md:      0 4px 12px rgba(28, 25, 23, 0.10), 0 2px 4px rgba(28, 25, 23, 0.06);
+    --shadow-lg:      0 10px 30px rgba(28, 25, 23, 0.12), 0 4px 10px rgba(28, 25, 23, 0.06);
+    --shadow-xl:      0 20px 50px rgba(28, 25, 23, 0.15), 0 8px 20px rgba(28, 25, 23, 0.08);
+    --shadow-accent:  0 8px 24px rgba(184, 92, 56, 0.30);   /* terracota glow for CTA hover */
+    --shadow-inset:   inset 0 2px 4px rgba(28, 25, 23, 0.06);
+    --shadow-none:    none;
+
+    /* --- Motion — editorial-luxury: deliberate, slow-reveal --- */
+    /* Curves */
+    --ease-primary:   cubic-bezier(0.16, 1, 0.3, 1);    /* expo-out — luxury reveal */
+    --ease-out:       cubic-bezier(0.0, 0.0, 0.2, 1);   /* standard ease-out */
+    --ease-in:        cubic-bezier(0.4, 0.0, 1, 1);     /* ease-in for exits */
+    --ease-in-out:    cubic-bezier(0.4, 0.0, 0.2, 1);   /* symmetric transitions */
+    --ease-spring:    cubic-bezier(0.34, 1.38, 0.64, 1); /* slight overshoot — subtle */
+
+    /* Durations — deliberately slow for editorial mood */
+    --duration-instant:  100ms;   /* checkbox, radio immediate feedback */
+    --duration-fast:     200ms;   /* hover states, tooltip show */
+    --duration-normal:   350ms;   /* state transitions, accordions */
+    --duration-slow:     500ms;   /* page transitions, modal open */
+    --duration-reveal:   700ms;   /* scroll-triggered section reveal */
+    --duration-hero:     900ms;   /* hero headline entrance */
+    --stagger-delay:     80ms;    /* between items in stagger lists (generous) */
+
+    /* --- Layout --- */
+    --container-xs:      480px;
+    --container-sm:      640px;
+    --container-md:      768px;
+    --container-lg:      1024px;
+    --container-xl:      1280px;
+    --container-2xl:     1440px;   /* editorial: allow wider canvas */
+
+    /* Gutter — generous horizontal padding */
+    --gutter-mobile:     1.25rem;  /* 20px */
+    --gutter-tablet:     2.5rem;   /* 40px */
+    --gutter-desktop:    4rem;     /* 64px */
+
+    /* Content widths */
+    --prose-width:       65ch;     /* optimal reading line length */
+    --narrow-width:      48ch;     /* pull-quotes, captions */
+
+    /* --- Z-index named scale --- */
+    --z-below:         -1;
+    --z-base:           0;
+    --z-raised:        10;
+    --z-dropdown:    1000;
+    --z-sticky:      1010;
+    --z-overlay:     1020;
+    --z-modal:       1030;
+    --z-popover:     1040;
+    --z-tooltip:     1050;
+    --z-toast:       1060;
+    --z-skipnav:     1070;
+  }
+
+  /* ---------------------------------------------------------------------------
+     1.2  DARK MODE — overrides only what changes
+     (class-based: .dark on <html>, per stack spec)
+     --------------------------------------------------------------------------- */
+  .dark {
+    color-scheme: dark;
+
+    /* Backgrounds — deep warm darks, NOT cool greys */
+    --bg-canvas:       #0E0C0A;   /* near-black with warm undertone */
+    --bg-primary:      #161210;   /* main dark surface */
+    --bg-secondary:    #1E1A17;   /* card/section surface */
+    --bg-tertiary:     #252119;   /* hover state surface */
+    --bg-overlay:      rgba(14, 12, 10, 0.92);
+
+    /* Text — inverted but still warm */
+    --text-primary:    #EDE8DF;   /* warm off-white */
+    --text-secondary:  #B5AFA8;   /* warm mid-grey */
+    --text-tertiary:   #7D756E;   /* muted warm grey */
+    --text-emphasis:   #F5F1EB;   /* brightest text */
+    --text-inverse:    #1C1917;
+
+    /* Brand — slightly lifted for dark bg */
+    --color-terracota:       #C9724D;   /* slightly brighter on dark */
+    --color-terracota-hover: #D98260;
+    --color-terracota-light: #E09A7B;
+    --color-salvia:          #8FA08A;
+    --color-salvia-hover:    #A3B59E;
+    --color-salvia-light:    #B8C9B4;
+
+    /* Semantic */
+    --color-success:         #6E9470;
+    --color-success-bg:      #1A2B1B;
+    --color-warning:         #C49040;
+    --color-warning-bg:      #2A2010;
+    --color-error:           #C05050;
+    --color-error-bg:        #2A1515;
+    --color-info:            #6090A8;
+    --color-info-bg:         #131E26;
+
+    /* Border */
+    --border-color:          #2E2820;
+    --border-color-subtle:   #231F1C;
+    --border-color-emphasis: #504840;
+
+    /* Shadows — subtle glow in dark, softer overall */
+    --shadow-xs:      0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.20);
+    --shadow-md:      0 4px 12px rgba(0, 0, 0, 0.40), 0 2px 4px rgba(0, 0, 0, 0.25);
+    --shadow-lg:      0 10px 30px rgba(0, 0, 0, 0.45), 0 4px 10px rgba(0, 0, 0, 0.30);
+    --shadow-xl:      0 20px 50px rgba(0, 0, 0, 0.50), 0 8px 20px rgba(0, 0, 0, 0.35);
+    --shadow-accent:  0 8px 24px rgba(201, 114, 77, 0.35);  /* terracota glow — dark variant */
+  }
+
+  /* ---------------------------------------------------------------------------
+     1.3  OS dark mode preference fallback
+     (respects system preference if no .dark/.light class is present)
+     --------------------------------------------------------------------------- */
+  @media (prefers-color-scheme: dark) {
+    :root:not(.dark):not(.light) {
+      color-scheme: dark;
+
+      --bg-canvas:       #0E0C0A;
+      --bg-primary:      #161210;
+      --bg-secondary:    #1E1A17;
+      --bg-tertiary:     #252119;
+      --bg-overlay:      rgba(14, 12, 10, 0.92);
+      --text-primary:    #EDE8DF;
+      --text-secondary:  #B5AFA8;
+      --text-tertiary:   #7D756E;
+      --text-emphasis:   #F5F1EB;
+      --text-inverse:    #1C1917;
+      --color-terracota:       #C9724D;
+      --color-terracota-hover: #D98260;
+      --color-terracota-light: #E09A7B;
+      --color-salvia:          #8FA08A;
+      --border-color:          #2E2820;
+      --border-color-subtle:   #231F1C;
+      --border-color-emphasis: #504840;
+    }
+  }
+
+  /* ---------------------------------------------------------------------------
+     1.4  Reduced-motion preference
+     --------------------------------------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --duration-fast:    0ms;
+      --duration-normal:  0ms;
+      --duration-slow:    0ms;
+      --duration-reveal:  0ms;
+      --duration-hero:    0ms;
+      --stagger-delay:    0ms;
+    }
+  }
+}
+
+/* =============================================================================
+   2. LAYER BASE — global resets & element styles
+   ============================================================================= */
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Safari focus ring fix */
+  :where(button):focus:not(:focus-visible) {
+    outline: 0;
+  }
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    /* Prevent layout shift from scrollbar */
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    letter-spacing: 0.01em;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100dvh;
+    transition: background-color var(--duration-slow) var(--ease-in-out),
+                color var(--duration-slow) var(--ease-in-out);
+  }
+
+  /* Skip to content — accessibility */
+  .skip-nav {
+    position: absolute;
+    top: -9999px;
+    left: var(--space-4);
+    z-index: var(--z-skipnav);
+    background: var(--color-primary);
+    color: var(--text-on-accent);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-base);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .skip-nav:focus {
+    top: var(--space-4);
+  }
+
+  /* Headings — serif display font, tight tracking */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: var(--weight-regular); /* Fraunces looks better at regular weight */
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-emphasis);
+    text-wrap: balance;
+  }
+
+  h1 { font-size: var(--text-4xl); letter-spacing: var(--tracking-tighter); }
+  h2 { font-size: var(--text-3xl); }
+  h3 { font-size: var(--text-2xl); letter-spacing: var(--tracking-normal); }
+  h4 { font-size: var(--text-xl); letter-spacing: var(--tracking-normal); }
+  h5 { font-size: var(--text-lg);  font-family: var(--font-body); font-weight: var(--weight-semibold); }
+  h6 { font-size: var(--text-base); font-family: var(--font-body); font-weight: var(--weight-semibold); }
+
+  p {
+    max-width: var(--prose-width);
+    text-wrap: pretty;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* Links */
+  a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    transition: color var(--duration-fast) var(--ease-out),
+                text-decoration-color var(--duration-fast) var(--ease-out);
+  }
+  a:hover {
+    color: var(--color-primary-hover);
+  }
+  a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Images */
+  img, video, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Form elements */
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  /* Lists reset when used in nav context */
+  :where(nav) ul,
+  :where(nav) ol {
+    list-style: none;
+  }
+
+  /* Selection colour — warm brand tint */
+  ::selection {
+    background-color: rgba(var(--color-terracota-rgb), 0.2);
+    color: var(--text-emphasis);
+  }
+
+  /* Scrollbar — subtle warm tone (Chromium) */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+  ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: var(--radius-full); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border-color-emphasis); }
+
+  /* Focus visible — accessible, branded */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* HR */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: var(--space-8) 0;
+  }
+
+  /* Code */
+  code, pre {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-base);
+  }
+  code { padding: 0.1em 0.4em; }
+  pre { padding: var(--space-4); overflow-x: auto; }
+}
+
+/* =============================================================================
+   3. LAYER BASE — layout containers & grid patterns
+   ============================================================================= */
+
+@layer base {
+
+  /* Main container — centered, responsive gutter */
+  .container {
+    width: 100%;
+    max-width: var(--container-xl);
+    margin-inline: auto;
+    padding-inline: var(--gutter-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .container { padding-inline: var(--gutter-tablet); }
+  }
+
+  @media (min-width: 1024px) {
+    .container { padding-inline: var(--gutter-desktop); }
+  }
+
+  /* Prose container — reading-optimized */
+  .container-prose {
+    width: 100%;
+    max-width: var(--container-md);
+    margin-inline: auto;
+    padding-inline: var(--gutter-mobile);
+  }
+
+  /* Wide / bleed container */
+  .container-wide {
+    width: 100%;
+    max-width: var(--container-2xl);
+    margin-inline: auto;
+    padding-inline: var(--gutter-mobile);
+  }
+
+  @media (min-width: 768px) {
+    .container-wide { padding-inline: var(--gutter-tablet); }
+  }
+
+  /* Section wrapper — controls vertical rhythm */
+  .section {
+    padding-block: var(--space-section);
+  }
+
+  .section-sm {
+    padding-block: var(--space-section-inner);
+  }
+
+  /* Editorial asymmetric grid — landing sections */
+  /* Used for hero, about, features. NOT used in admin/dashboard. */
+  .grid-editorial {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .grid-editorial {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    /* Asymmetric: 55/45 split for editorial feel */
+    .grid-editorial {
+      grid-template-columns: 55fr 45fr;
+      gap: var(--space-16);
+    }
+    .grid-editorial.grid-editorial--reverse {
+      grid-template-columns: 45fr 55fr;
+    }
+  }
+
+  /* Services grid — 3-col at desktop, 1/2 at mobile/tablet */
+  /* NOTE: NOT uniform shadow-sm cards — anti-pattern enforcement */
+  .grid-services {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .grid-services { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-services { grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+  }
+
+  /* Admin content grid — functional, symmetric */
+  .grid-admin {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 768px) {
+    .grid-admin-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-admin-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-admin-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* Flex utilities */
+  .flex-center  { display: flex; align-items: center; justify-content: center; }
+  .flex-between { display: flex; align-items: center; justify-content: space-between; }
+  .flex-start   { display: flex; align-items: center; justify-content: flex-start; }
+  .flex-col     { display: flex; flex-direction: column; }
+  .flex-gap-2   { display: flex; gap: var(--space-2); }
+  .flex-gap-4   { display: flex; gap: var(--space-4); }
+  .flex-gap-6   { display: flex; gap: var(--space-6); }
+}
+
+/* =============================================================================
+   4. LAYER COMPONENTS — reusable component tokens
+   (shadcn/ui components are themed via CSS variables below)
+   ============================================================================= */
+
+@layer components {
+
+  /* --- shadcn/ui CSS variable mapping ---
+     shadcn reads these exact variable names from :root
+     We map our warm palette tokens to shadcn's naming convention */
+
+  :root {
+    /* shadcn base */
+    --background:           var(--bg-canvas);
+    --foreground:           var(--text-primary);
+
+    /* Card */
+    --card:                 var(--bg-secondary);
+    --card-foreground:      var(--text-primary);
+
+    /* Popover / dropdown */
+    --popover:              var(--bg-primary);
+    --popover-foreground:   var(--text-primary);
+
+    /* Primary CTA */
+    --primary:              var(--color-terracota);
+    --primary-foreground:   var(--text-on-accent);
+
+    /* Secondary */
+    --secondary:            var(--bg-tertiary);
+    --secondary-foreground: var(--text-primary);
+
+    /* Muted */
+    --muted:                var(--bg-secondary);
+    --muted-foreground:     var(--text-tertiary);
+
+    /* Accent */
+    --accent:               var(--bg-tertiary);
+    --accent-foreground:    var(--text-primary);
+
+    /* Destructive */
+    --destructive:          var(--color-error);
+    --destructive-foreground: var(--text-inverse);
+
+    /* Border & input */
+    --border:               var(--border-color);
+    --input:                var(--border-color);
+    --ring:                 var(--color-terracota);
+
+    /* Chart colors (for admin KPI widgets) */
+    --chart-1:              var(--color-terracota);
+    --chart-2:              var(--color-salvia);
+    --chart-3:              var(--color-bisque);
+    --chart-4:              #7C6A5A;
+    --chart-5:              #4A6B5A;
+
+    /* Radius — shadcn uses --radius for all its rounded corners */
+    --radius:               var(--radius-md);
+    --radius-sm:            var(--radius-base);
+    --radius-lg:            var(--radius-lg);
+    --radius-xl:            var(--radius-xl);
+  }
+
+  /* Dark mode shadcn overrides */
+  .dark {
+    --background:           var(--bg-canvas);
+    --foreground:           var(--text-primary);
+    --card:                 var(--bg-secondary);
+    --card-foreground:      var(--text-primary);
+    --popover:              var(--bg-secondary);
+    --popover-foreground:   var(--text-primary);
+    --primary:              var(--color-terracota);
+    --primary-foreground:   var(--text-on-accent);
+    --secondary:            var(--bg-tertiary);
+    --secondary-foreground: var(--text-primary);
+    --muted:                var(--bg-secondary);
+    --muted-foreground:     var(--text-tertiary);
+    --accent:               var(--bg-tertiary);
+    --accent-foreground:    var(--text-primary);
+    --destructive:          var(--color-error);
+    --destructive-foreground: #FAF8F5;
+    --border:               var(--border-color);
+    --input:                var(--border-color);
+    --ring:                 var(--color-terracota);
+  }
+
+  /* --- Eyebrow label — editorial signature element --- */
+  /* Usage: <span class="eyebrow">Servicios</span> */
+  .eyebrow {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  /* --- Decorative rule — thin warm line for editorial sections --- */
+  .rule-ornamental {
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background-color: var(--color-bisque);
+    margin-block: var(--space-4);
+  }
+
+  /* --- Button base tokens --- */
+  /* shadcn handles the full component; these are supplemental overrides */
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: var(--text-on-accent);
+    transition: background-color var(--duration-fast) var(--ease-out),
+                box-shadow var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /* --- Card — editorial variant (not the generic SaaS shadow-sm grid) --- */
+  /* Anti-pattern reminder: NO uniform shadow-sm cards in 3-col grid */
+  .card-editorial {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color-subtle);
+    border-radius: var(--radius-md);
+    padding: var(--space-8);
+    transition: border-color var(--duration-normal) var(--ease-out),
+                box-shadow var(--duration-normal) var(--ease-out);
+  }
+  .card-editorial:hover {
+    border-color: var(--border-color);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* --- Text balance utility --- */
+  .balance { text-wrap: balance; }
+  .pretty  { text-wrap: pretty; }
+}
+
+/* =============================================================================
+   5. LAYER UTILITIES — single-purpose helpers not in Tailwind defaults
+   ============================================================================= */
+
+@layer utilities {
+
+  /* Fluid hero text */
+  .text-hero { font-size: var(--text-hero); }
+
+  /* Display font shorthand */
+  .font-display { font-family: var(--font-display); }
+  .font-body    { font-family: var(--font-body); }
+
+  /* Spacing shorthands for section rhythm */
+  .py-section    { padding-block: var(--space-section); }
+  .py-section-sm { padding-block: var(--space-section-inner); }
+
+  /* Warm surface backgrounds */
+  .bg-canvas    { background-color: var(--bg-canvas); }
+  .bg-warm      { background-color: var(--bg-secondary); }
+  .bg-warm-deep { background-color: var(--bg-tertiary); }
+
+  /* Text colour utilities */
+  .text-muted     { color: var(--text-tertiary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-emphasis  { color: var(--text-emphasis); }
+
+  /* Animation reveal — used with Framer Motion variants */
+  .will-reveal {
+    will-change: opacity, transform;
+  }
+
+  /* Decorative text gradient — for editorial hero accent words */
+  .text-gradient-warm {
+    background: linear-gradient(135deg, var(--color-terracota) 0%, var(--color-bisque) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Therapy — logo-full.svg
+  Wordmark completo: símbolo gestual + "Therapy" + tagline
+  Colores: terracota #B85C38 sobre transparente (uso sobre fondo claro #FAF8F5)
+  Tipografía: Fraunces italic 300 opsz:144
+  Variante: color principal — para headers en fondos claros, sitio web, materiales impresos
+-->
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 520 140"
+  width="520"
+  height="140"
+  role="img"
+  aria-label="Therapy — Movimiento que sana, cuidado que transforma"
+>
+  <title>Therapy</title>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,300&amp;display=swap');
+      .wm {
+        font-family: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+        font-style: italic;
+        font-weight: 300;
+        font-variation-settings: 'opsz' 144;
+        font-size: 72px;
+        letter-spacing: -0.02em;
+        fill: #1C1917;
+      }
+      .tg {
+        font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 400;
+        font-size: 10.5px;
+        letter-spacing: 0.2em;
+        fill: #78716C;
+      }
+    </style>
+  </defs>
+
+  <!--
+    Símbolo gestual: arco caligráfico de peso variable
+    Forma cerrada: borde exterior arco amplio + borde interior arco más cerrado
+    Resultado: trazo de pincel que adelgaza en puntas — evoca movimiento fluido
+    ViewBox del símbolo: 0 0 52 100 centrado en x=26
+  -->
+  <g transform="translate(12, 18)" aria-hidden="true">
+    <!--
+      Arco caligráfico principal — forma rellena de ancho variable
+      Punto inicio (arriba): delgado — Punto medio (curva): grueso — Punto final (abajo): delgado
+      Outer edge: arco suave hacia la derecha
+      Inner edge: arco más cerrado paralelo al outer
+    -->
+    <path
+      d="M 24 4
+         C 38 4, 50 22, 48 46
+         C 46 68, 32 88, 26 98
+         C 22 90, 12 70, 12 48
+         C 12 26, 18 6, 24 4
+         Z"
+      fill="#B85C38"
+      opacity="0.92"
+    />
+    <!--
+      Trazo interior — crea la ilusión de pincelada hueca (ojo del trazo)
+      Resta volumen en el centro del arco para dar ligereza y elegancia editorial
+    -->
+    <path
+      d="M 24 14
+         C 32 14, 40 28, 39 46
+         C 38 62, 30 80, 26 88
+         C 23 80, 18 62, 18 46
+         C 18 30, 21 14, 24 14
+         Z"
+      fill="#FAF8F5"
+      opacity="1"
+    />
+    <!-- Punto de acento en el extremo superior — ancora la composición -->
+    <circle cx="24" cy="4" r="2.5" fill="#B85C38" opacity="0.7"/>
+  </g>
+
+  <!-- Divisor vertical sutil -->
+  <line x1="76" y1="26" x2="76" y2="106" stroke="#C49A6C" stroke-width="0.6" opacity="0.4"/>
+
+  <!-- Wordmark -->
+  <text x="90" y="97" class="wm">Therapy</text>
+
+  <!-- Línea decorativa bajo wordmark -->
+  <line x1="90" y1="110" x2="510" y2="110" stroke="#C49A6C" stroke-width="0.6" opacity="0.35"/>
+
+  <!-- Tagline -->
+  <text x="90" y="128" class="tg">MOVIMIENTO QUE SANA, CUIDADO QUE TRANSFORMA</text>
+</svg>
