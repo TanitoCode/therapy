@@ -1,27 +1,20 @@
+import { Hero } from '@/components/public/hero'
+import { Services } from '@/components/public/services'
+import { About } from '@/components/public/about'
+import { Testimonials } from '@/components/public/testimonials'
+import { Faq } from '@/components/public/faq'
+
+export const dynamic = 'force-dynamic'
+
 export default function HomePage() {
   return (
-    <main
-      style={{
-        minHeight: '100vh',
-        backgroundColor: 'var(--bg-canvas)',
-        color: 'var(--text-primary)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontFamily: 'var(--font-body)',
-      }}
-    >
-      <h1
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'var(--text-3xl)',
-          fontWeight: 300,
-          letterSpacing: '-0.02em',
-          color: 'var(--text-emphasis)',
-        }}
-      >
-        Therapy — Próximamente
-      </h1>
-    </main>
+    <>
+      <Hero />
+      <Services />
+      <About />
+      <Testimonials />
+      <Faq />
+      {/* T22: Contacto + Mapa */}
+    </>
   )
 }
