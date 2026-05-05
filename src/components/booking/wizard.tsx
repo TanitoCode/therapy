@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useBookingState, type ServiceItem } from '@/hooks/use-booking-state'
 import { ServiceStep } from './service-step'
 import { CalendarStep } from './calendar-step'
+import { PatientStep } from './patient-step'
+import { ConfirmationStep } from './confirmation-step'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
@@ -103,8 +105,8 @@ export function Wizard({ services, initialSlug }: WizardProps) {
         </ol>
       </nav>
 
-      {/* ── Back button ── */}
-      {step > 1 && (
+      {/* ── Back button — only on steps 2 and 3; step 4 (confirmation) has its own CTAs ── */}
+      {step > 1 && step < 4 && (
         <button
           type="button"
           onClick={prevStep}
@@ -138,12 +140,13 @@ export function Wizard({ services, initialSlug }: WizardProps) {
         >
           {step === 1 && <ServiceStep services={services} />}
           {step === 2 && <CalendarStep />}
-          {/* Steps 3 and 4 implemented in T24 */}
+          {step === 3 && <PatientStep />}
+          {step === 4 && <ConfirmationStep />}
         </motion.div>
       </AnimatePresence>
 
-      {/* ── Continue CTA (step 2 + slot selected) ── */}
-      {canContinue && (
+      {/* ── Continue CTA — only on step 2 when slot selected; step 3 has its own form submit ── */}
+      {canContinue && step === 2 && (
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
