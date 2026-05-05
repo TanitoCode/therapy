@@ -23,4 +23,9 @@ export const BOOKING_RATE_LIMIT = {
   windowMs: 60_000, // 1 minuto
 } as const
 
+export const CONTACT_RATE_LIMIT = {
+  requests: 3,
+  windowMs: 3_600_000, // 1 hora
+} as const
+
 export const TOKEN_EXPIRY_DAYS = 30
