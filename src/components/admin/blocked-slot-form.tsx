@@ -229,6 +229,7 @@ export function BlockedSlotForm({ slot, onSuccess, onCancel }: BlockedSlotFormPr
               key={String(value)}
               type="button"
               onClick={() => setField('recurring', value)}
+              aria-pressed={form.recurring === value}
               style={{
                 padding: '5px 14px',
                 borderRadius: 'var(--radius-base)',

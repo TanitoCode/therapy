@@ -74,10 +74,10 @@ export function Wizard({ services, initialSlug }: WizardProps) {
                       s.n
                     )}
                   </div>
-                  {/* Label — hidden on xs */}
+                  {/* Label — sr-only on xs so screen readers always get step name */}
                   <span
                     className={[
-                      'hidden font-[family-name:var(--font-plus-jakarta)] text-xs sm:block',
+                      'sr-only font-[family-name:var(--font-plus-jakarta)] text-xs sm:not-sr-only sm:block',
                       isActive
                         ? 'font-semibold text-[var(--text-primary)]'
                         : isDone

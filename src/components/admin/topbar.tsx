@@ -79,6 +79,7 @@ export function Topbar({ userName, userEmail }: TopbarProps) {
             onClick={() => setDropdownOpen((v) => !v)}
             aria-expanded={dropdownOpen}
             aria-haspopup="true"
+            aria-label={`Menú de usuario: ${userName}`}
             style={{
               display: 'flex',
               alignItems: 'center',

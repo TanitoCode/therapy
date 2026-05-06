@@ -4,9 +4,10 @@ Retomamos Therapy. --skip-boot
 - therapy/estado ✅ Engram actualizado
 - Fase 2 ✅ completa
 - Fase 2B ✅ completa
-- Fase 3 en progreso — T1-T37 ✅
+- Fase 3 ✅ completa — T1-T38 ✅
+- Fase 4 ✅ completa — T39-T44 ✅
 - Proyecto en /home/soporte/proyectos/kinesio
-- Build limpio: 37 rutas, tsc sin errores
+- Build limpio: 37 rutas, tsc sin errores, 64 tests pass
 
 ## Completado en sesiones anteriores
 - T1-T13: Setup, DB schema, Better Auth, APIs públicas (servicios, availability, booking)
@@ -26,17 +27,13 @@ Retomamos Therapy. --skip-boot
 - T35: /admin/servicios CRUD + /admin/configuracion (localStorage MVP)
 - T36: SEO — metadata layout público, sitemap.ts, robots.ts, opengraph-image.tsx, JSON-LD MedicalBusiness
 - T37: not-found.tsx, error.tsx, turnos/loading.tsx, empty-state.tsx, error-state.tsx
-
-## Pendiente Fase 3
-- T38: Accessibility audit (axe + fixes — skip link ya hecho en T36)
-
-## Pendiente Fase 4
-- T39: Tests unitarios lib/availability + validators (ya existe src/__tests__/availability.test.ts)
-- T40: Tests E2E flujo reserva pública (Playwright)
-- T41: Tests E2E flujo admin
-- T42: Tests integración API endpoints
-- T43: Security — headers + rate limit + audit log
-- T44: Performance — bundle gates + images + caching
+- T38: A11Y audit — 5 fixes (wizard sr-only, blocked-slot aria-pressed, cancel/confirm aria-live, topbar aria-label)
+- T39: Tests unitarios — 55 tests (18 availability + 37 validators) todos PASS
+- T40: Tests E2E booking flow — e2e/booking-flow.spec.ts (Playwright, require server)
+- T41: Tests E2E admin flow — e2e/admin-flow.spec.ts (Playwright, require server)
+- T42: Tests integración API — src/__tests__/api-availability.test.ts (64 pass, 6 skip HTTP)
+- T43: Security — rate limit /api/availability (30 req/min), audit log en blocked-slots y services
+- T44: Performance — bundlewatch config en package.json, bundles within gates
 
 ## Pendiente Fase 5
 - T45: Vercel setup + env vars
@@ -49,10 +46,14 @@ Retomamos Therapy. --skip-boot
 - admin/turnos/page.tsx hace redirect a /admin/dashboard (sidebar lo necesita)
 - vercel.json ya existe con cron + security headers + cache rules
 - BUSINESS_HOURS.workDays es readonly — usar [...BUSINESS_HOURS.workDays] al copiar
-- Los agentes background pueden cortarse por rate limit — completar inline si son páginas simples
+- E2E tests en e2e/ requieren PLAYWRIGHT_ADMIN_EMAIL + PLAYWRIGHT_ADMIN_PASSWORD en env
+- HTTP integration tests en api-availability.test.ts están en describe.skip (require server)
+- Playwright instalado: @playwright/test + chromium browser descargado
+- Audit log: appointments ✅, blocked_slots ✅, services ✅ — patients NO (solo reads+updates sin acción crítica)
+- bundlewatch: gates en package.json (main < 250kB, vendor < 150kB, pages < 250kB)
 
 ## Acción inmediata
-Continuar desde T38-A11Y.
+Continuar desde T45 (Vercel setup + env vars).
 NO spawnear orquestador como subagente.
 NO releer archivos de diseño inline.
 DAG State: solo resumen ligero.

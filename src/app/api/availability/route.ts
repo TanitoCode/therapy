@@ -6,6 +6,7 @@ import { services } from '@/db/schema/services'
 import { appointments } from '@/db/schema/appointments'
 import { blockedSlots } from '@/db/schema/blocked-slots'
 import { getAvailableSlots } from '@/lib/availability'
+import { checkRateLimit } from '@/lib/rate-limit'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,6 +19,12 @@ const querySchema = z.object({
 const AR_UTC_OFFSET_HOURS = 3
 
 export async function GET(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'anon'
+  const { success: allowed } = await checkRateLimit(`availability:${ip}`, 30, 60_000) // 30 req/min
+  if (!allowed) {
+    return NextResponse.json({ error: 'Demasiadas solicitudes' }, { status: 429 })
+  }
+
   const { searchParams } = request.nextUrl
 
   const parsed = querySchema.safeParse({

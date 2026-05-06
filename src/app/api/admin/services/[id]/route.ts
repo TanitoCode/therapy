@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { services } from '@/db/schema/services'
+import { auditLog } from '@/db/schema/audit'
 import { requireAdmin } from '@/lib/auth-server'
 import { z } from 'zod'
 
@@ -35,8 +36,9 @@ export async function GET(_request: NextRequest, { params }: Params) {
 }
 
 export async function PATCH(request: NextRequest, { params }: Params) {
+  let session: Awaited<ReturnType<typeof requireAdmin>>
   try {
-    await requireAdmin()
+    session = await requireAdmin()
   } catch (err) {
     const e = err as Error
     return NextResponse.json(
@@ -74,12 +76,23 @@ export async function PATCH(request: NextRequest, { params }: Params) {
     .returning()
 
   if (!updated) return NextResponse.json({ error: 'Servicio no encontrado' }, { status: 404 })
+
+  await db.insert(auditLog).values({
+    actorId: session.user.id,
+    actorType: 'admin',
+    action: 'service.updated',
+    resourceType: 'service',
+    resourceId: id,
+    metadata: parsed.data,
+  })
+
   return NextResponse.json(updated)
 }
 
 export async function DELETE(_request: NextRequest, { params }: Params) {
+  let session: Awaited<ReturnType<typeof requireAdmin>>
   try {
-    await requireAdmin()
+    session = await requireAdmin()
   } catch (err) {
     const e = err as Error
     return NextResponse.json(
@@ -98,5 +111,14 @@ export async function DELETE(_request: NextRequest, { params }: Params) {
     .returning({ id: services.id })
 
   if (!updated) return NextResponse.json({ error: 'Servicio no encontrado' }, { status: 404 })
+
+  await db.insert(auditLog).values({
+    actorId: session.user.id,
+    actorType: 'admin',
+    action: 'service.deactivated',
+    resourceType: 'service',
+    resourceId: id,
+  })
+
   return new NextResponse(null, { status: 204 })
 }

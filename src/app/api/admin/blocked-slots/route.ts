@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { and, eq, lt, gt } from 'drizzle-orm'
 import { db } from '@/db'
 import { blockedSlots } from '@/db/schema/blocked-slots'
+import { auditLog } from '@/db/schema/audit'
 import { requireAdmin } from '@/lib/auth-server'
 import { z } from 'zod'
 
@@ -37,8 +38,9 @@ export async function GET(_request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  let session: Awaited<ReturnType<typeof requireAdmin>>
   try {
-    await requireAdmin()
+    session = await requireAdmin()
   } catch (err) {
     const e = err as Error
     return NextResponse.json(
@@ -89,6 +91,15 @@ export async function POST(request: NextRequest) {
     .insert(blockedSlots)
     .values({ startAt, endAt, reason: reason ?? null, recurring })
     .returning()
+
+  await db.insert(auditLog).values({
+    actorId: session.user.id,
+    actorType: 'admin',
+    action: 'blocked_slot.created',
+    resourceType: 'blocked_slot',
+    resourceId: slot.id,
+    metadata: { startAt: startAt.toISOString(), endAt: endAt.toISOString(), recurring },
+  })
 
   return NextResponse.json(slot, { status: 201 })
 }

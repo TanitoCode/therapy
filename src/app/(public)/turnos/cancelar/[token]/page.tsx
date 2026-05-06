@@ -59,7 +59,7 @@ export default function CancelarPage({
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center px-6 py-24 lg:px-8">
-      <div className="mx-auto w-full max-w-[480px] text-center">
+      <div className="mx-auto w-full max-w-[480px] text-center" aria-live="polite" aria-atomic="true">
         <AnimatePresence mode="wait">
 
           {/* Confirmation prompt */}

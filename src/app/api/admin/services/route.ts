@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { asc, eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { services } from '@/db/schema/services'
+import { auditLog } from '@/db/schema/audit'
 import { requireAdmin } from '@/lib/auth-server'
 import { z } from 'zod'
 
@@ -31,8 +32,9 @@ export async function GET(_request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  let session: Awaited<ReturnType<typeof requireAdmin>>
   try {
-    await requireAdmin()
+    session = await requireAdmin()
   } catch (err) {
     const e = err as Error
     return NextResponse.json(
@@ -70,6 +72,15 @@ export async function POST(request: NextRequest) {
     .insert(services)
     .values({ name, slug, description: description ?? null, durationMin, color })
     .returning()
+
+  await db.insert(auditLog).values({
+    actorId: session.user.id,
+    actorType: 'admin',
+    action: 'service.created',
+    resourceType: 'service',
+    resourceId: service.id,
+    metadata: { name, slug, durationMin, color },
+  })
 
   return NextResponse.json(service, { status: 201 })
 }
