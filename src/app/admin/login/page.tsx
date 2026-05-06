@@ -9,7 +9,12 @@ export const metadata: Metadata = {
 }
 
 export default async function AdminLoginPage() {
-  const session = await getSession()
+  let session = null
+  try {
+    session = await getSession()
+  } catch {
+    // DB unavailable — render login form
+  }
   if (session) redirect('/admin/dashboard')
 
   return (

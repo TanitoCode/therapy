@@ -4,18 +4,23 @@ import { services } from '@/db/schema/services'
 import { ServicesGrid } from './services-grid'
 
 export async function Services() {
-  const rows = await db
-    .select({
-      id: services.id,
-      name: services.name,
-      slug: services.slug,
-      description: services.description,
-      durationMin: services.durationMin,
-      color: services.color,
-    })
-    .from(services)
-    .where(eq(services.active, true))
-    .orderBy(services.name)
+  let rows: { id: string; name: string; slug: string; description: string | null; durationMin: number; color: string }[] = []
+  try {
+    rows = await db
+      .select({
+        id: services.id,
+        name: services.name,
+        slug: services.slug,
+        description: services.description,
+        durationMin: services.durationMin,
+        color: services.color,
+      })
+      .from(services)
+      .where(eq(services.active, true))
+      .orderBy(services.name)
+  } catch {
+    // DB unavailable — render section with empty state (graceful degradation)
+  }
 
   return (
     <section

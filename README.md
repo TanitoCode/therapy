@@ -55,6 +55,8 @@ Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
 | `npm test` | Ejecutar tests con Vitest |
 | `npm run test:watch` | Tests en modo watch |
 | `npm run test:coverage` | Tests con reporte de cobertura |
+| `npm run test:e2e` | Tests E2E con Playwright (requiere servidor activo) |
+| `npm run test:e2e:ui` | Tests E2E en modo interactivo |
 | `npm run db:generate` | Generar migraciones Drizzle |
 | `npm run db:migrate` | Aplicar migraciones Drizzle |
 | `npm run db:studio` | Abrir Drizzle Studio |
@@ -69,8 +71,15 @@ therapy/
 ├── src/
 │   ├── app/
 │   │   ├── (public)/          # Rutas públicas (landing, servicios, contacto)
-│   │   ├── admin/             # Panel de administración (protegido)
-│   │   │   └── login/
+│   │   ├── admin/
+│   │   │   ├── (protected)/   # Rutas protegidas (layout con auth guard)
+│   │   │   │   ├── dashboard/
+│   │   │   │   ├── pacientes/
+│   │   │   │   ├── servicios/
+│   │   │   │   ├── bloqueos/
+│   │   │   │   ├── turnos/
+│   │   │   │   └── configuracion/
+│   │   │   └── login/         # Pública — fuera del layout protegido
 │   │   └── api/               # API Routes (auth, turnos, webhooks)
 │   ├── components/
 │   │   ├── ui/                # shadcn/ui primitivos
@@ -117,12 +126,22 @@ vercel --prod
 ```
 
 Variables de entorno requeridas en Vercel:
-- `DATABASE_URL` — Connection string de Neon (Transaction Pooler, puerto 6543)
-- `BETTER_AUTH_SECRET` — Secret para Better Auth (mínimo 32 caracteres)
-- `BETTER_AUTH_URL` — URL pública del deployment
-- `RESEND_API_KEY` — API key de Resend
-- `ADMIN_EMAIL` — Email del administrador del consultorio
-- `CRON_SECRET` — Secret para proteger endpoints de cron
-- `NEXT_PUBLIC_APP_URL` — URL pública de la aplicación
-- `UPSTASH_REDIS_REST_URL` — URL del Redis de Upstash
-- `UPSTASH_REDIS_REST_TOKEN` — Token del Redis de Upstash
+
+| Variable | Descripción |
+|----------|-------------|
+| `DATABASE_URL` | Connection string de Neon — Transaction Pooler, puerto 6543 |
+| `BETTER_AUTH_SECRET` | Secret para Better Auth — mínimo 32 caracteres |
+| `BETTER_AUTH_URL` | URL pública del deployment (ej: `https://tu-dominio.vercel.app`) |
+| `RESEND_API_KEY` | API key de Resend para envío de emails |
+| `ADMIN_EMAIL` | Email del administrador del consultorio |
+| `CRON_SECRET` | Secret para proteger `/api/cron/reminders` |
+| `NEXT_PUBLIC_APP_URL` | URL pública de la app (igual que `BETTER_AUTH_URL`) |
+| `UPSTASH_REDIS_REST_URL` | URL del Redis de Upstash (rate limiting) |
+| `UPSTASH_REDIS_REST_TOKEN` | Token del Redis de Upstash |
+
+Ver `.env.example` para descripción completa de cada variable.
+
+## Documentación
+
+- [Manual de administración](docs/admin-guide.md) — Gestión de turnos, pacientes, servicios y configuración
+- [Troubleshooting](docs/troubleshooting.md) — Problemas comunes y soluciones

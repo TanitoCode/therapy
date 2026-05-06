@@ -1,7 +1,7 @@
 # DAG State — Therapy
 
 > Backup en disco del estado del pipeline. Source of truth: Engram (`therapy/estado`).
-> Última actualización: 2026-04-28T14:00:00Z
+> Última actualización: 2026-05-06T00:00:00Z
 
 ## Identidad
 
@@ -87,9 +87,11 @@
 
 - seo-discovery (structural) → api-tester + performance-benchmarker → seo-discovery (full) → reality-checker
 
-### ⏳ Fase 5 — Publicación
+### ✅ Fase 5 — Publicación (completada 2026-05-06)
 
-- git → deployer (Vercel preview → production)
+- [x] T45-VERCEL-SETUP: Vercel project linked (prj_gb6LGJOTHiOEenY2n2DmZInIftNS), vercel.json con región gru1 + framework + headers + cron, script setup-vercel-env.sh ✅
+- [x] T46-DEPLOY-PREVIEW: Deploy preview `kinesio-2dj118xa0-tanitos-projects.vercel.app` — smoke test PASS (200 /, 200 /admin/login, 307→login /admin/dashboard, 200 /turnos) ✅
+- [x] T47-DOCS: README actualizado, docs/admin-guide.md, docs/troubleshooting.md ✅
 
 ## Estado Sistema
 
