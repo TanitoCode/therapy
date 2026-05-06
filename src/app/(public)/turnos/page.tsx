@@ -1,7 +1,15 @@
+import type { Metadata } from 'next'
 import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { services } from '@/db/schema/services'
 import { Wizard } from '@/components/booking/wizard'
+
+export const metadata: Metadata = {
+  title: 'Reservar Turno',
+  description:
+    'Reservá tu turno de kinesiología online en minutos. Elegí el servicio, la fecha y el horario que más te convenga.',
+  robots: { index: true, follow: true },
+}
 
 export const dynamic = 'force-dynamic'
 

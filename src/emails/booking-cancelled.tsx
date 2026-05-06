@@ -1,0 +1,98 @@
+import {
+  Body,
+  Button,
+  Container,
+  Head,
+  Heading,
+  Hr,
+  Html,
+  Preview,
+  Section,
+  Text,
+} from '@react-email/components'
+import * as React from 'react'
+
+interface Props {
+  patientName: string
+  serviceName: string
+  startAt: Date
+  appUrl: string
+}
+
+const dateLabel = (d: Date) =>
+  d.toLocaleDateString('es-AR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'America/Argentina/Buenos_Aires',
+  })
+
+const timeLabel = (d: Date) =>
+  d.toLocaleTimeString('es-AR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'America/Argentina/Buenos_Aires',
+  })
+
+export default function BookingCancelled({ patientName, serviceName, startAt, appUrl }: Props) {
+  return (
+    <Html lang="es" dir="ltr">
+      <Head />
+      <Preview>Tu turno fue cancelado — {serviceName}</Preview>
+      <Body style={body}>
+        <Container style={container}>
+          <Section style={header}>
+            <Heading style={logo}>Kinesiología</Heading>
+          </Section>
+
+          <Section style={content}>
+            <Heading style={h1}>Tu turno fue cancelado</Heading>
+            <Text style={text}>
+              Hola <strong>{patientName}</strong>, confirmamos que tu turno de{' '}
+              <strong>{serviceName}</strong> del {dateLabel(startAt)} a las {timeLabel(startAt)} fue
+              cancelado exitosamente.
+            </Text>
+            <Text style={text}>
+              Si querés reservar un nuevo turno, podés hacerlo desde nuestro sitio.
+            </Text>
+
+            <Section style={btnWrap}>
+              <Button style={btnPrimary} href={`${appUrl}/turnos`}>
+                Reservar nuevo turno
+              </Button>
+            </Section>
+          </Section>
+
+          <Hr style={divider} />
+
+          <Section style={footer}>
+            <Text style={footerText}>
+              Si no cancelaste este turno, contactanos de inmediato.
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
+  )
+}
+
+BookingCancelled.PreviewProps = {
+  patientName: 'Lucía Gómez',
+  serviceName: 'Kinesiología Deportiva',
+  startAt: new Date('2026-05-15T10:00:00-03:00'),
+  appUrl: 'http://localhost:3000',
+} satisfies Props
+
+const body: React.CSSProperties = { backgroundColor: '#f5f0eb', fontFamily: "'Georgia','Times New Roman',serif", margin: 0, padding: '32px 16px' }
+const container: React.CSSProperties = { maxWidth: 560, margin: '0 auto', backgroundColor: '#faf8f5', borderRadius: 12, overflow: 'hidden' }
+const header: React.CSSProperties = { backgroundColor: '#2a1f14', padding: '24px 32px' }
+const logo: React.CSSProperties = { color: '#d4a96a', fontSize: 20, fontWeight: 400, letterSpacing: '0.1em', margin: 0, textTransform: 'uppercase' as const }
+const content: React.CSSProperties = { padding: '32px 32px 24px' }
+const h1: React.CSSProperties = { color: '#2a1f14', fontSize: 24, fontWeight: 400, lineHeight: '1.3', margin: '0 0 16px' }
+const text: React.CSSProperties = { color: '#5c4a38', fontSize: 15, lineHeight: '1.6', margin: '0 0 16px' }
+const btnWrap: React.CSSProperties = { marginBottom: 16 }
+const btnPrimary: React.CSSProperties = { backgroundColor: '#c17b3c', borderRadius: 8, color: '#fff', display: 'inline-block', fontSize: 15, fontFamily: 'system-ui,sans-serif', fontWeight: 600, padding: '12px 28px', textDecoration: 'none' }
+const divider: React.CSSProperties = { borderColor: '#e0d5c8', margin: 0 }
+const footer: React.CSSProperties = { padding: '20px 32px' }
+const footerText: React.CSSProperties = { color: '#b5a496', fontSize: 12, fontFamily: 'system-ui,sans-serif', lineHeight: '1.5', margin: 0 }
