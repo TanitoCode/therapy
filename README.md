@@ -1,6 +1,6 @@
 # Therapy — Sistema de Turnos para Consultorio de Kinesiología
 
-Sistema de reserva de turnos online para un consultorio de kinesiología en Buenos Aires.
+Sistema de reserva de turnos online para un consultorio de kinesiología en San Rafael, Mendoza.
 Permite a los pacientes gestionar sus turnos, y al profesional administrar la agenda desde un panel privado.
 
 ## Stack
