@@ -39,19 +39,19 @@
     --text-primary:    #1C1917;   /* off-black (stone-900 warm tint) — headings, body */
     --text-secondary:  #44403C;   /* stone-700 — sub-labels, captions */
     --text-tertiary:   #78716C;   /* stone-500 — placeholders, muted */
-    --text-emphasis:   #0F0D0C;   /* near-black for high-emphasis headings */
+    --text-emphasis:   #0a0d0c;   /* near-black for high-emphasis headings */
     --text-inverse:    #FAF8F5;   /* text on dark/colored surfaces */
     --text-on-accent:  #FAF8F5;   /* text on terracota/salvia CTA buttons */
 
     /* Brand colors */
-    --color-terracota:       #B85C38;   /* warm sienna-terracota — primary CTA */
-    --color-terracota-hover: #9E4D2E;   /* darker hover state */
-    --color-terracota-light: #D97F60;   /* lighter tint, accents */
-    --color-salvia:          #7B8C76;   /* sage green — secondary accent */
-    --color-salvia-hover:    #66786A;   /* sage hover */
-    --color-salvia-light:    #A3B09E;   /* sage tint */
-    --color-bisque:          #C49A6C;   /* warm gold/bisque — decorative highlights */
-    --color-bisque-light:    #DEC49A;   /* lighter bisque for ornamental lines */
+    --color-terracota:       #175b5b;   /* deep teal — primary CTA */
+    --color-terracota-hover: #124f4f;   /* darker hover state */
+    --color-terracota-light: #4c7c78;   /* mid teal, accents */
+    --color-salvia:          #4c7c78;   /* teal — secondary accent */
+    --color-salvia-hover:    #3d6360;   /* secondary hover */
+    --color-salvia-light:    #8cb4b4;   /* light teal tint */
+    --color-bisque:          #737e7b;   /* neutral teal-grey — decorative */
+    --color-bisque-light:    #96a09d;   /* lighter neutral */
 
     /* Semantic / interactive aliases */
     --color-primary:         var(--color-terracota);
@@ -76,8 +76,8 @@
     --border-color-emphasis: #B0A99E;   /* stronger border for focused inputs */
 
     /* RGB companion variables for alpha compositing */
-    --color-terracota-rgb:   184, 92, 56;
-    --color-salvia-rgb:      123, 140, 118;
+    --color-terracota-rgb:   23, 91, 91;
+    --color-salvia-rgb:      76, 124, 120;
     --bg-canvas-rgb:         250, 248, 245;
     --text-primary-rgb:      28, 25, 23;
 
@@ -168,7 +168,7 @@
     --shadow-md:      0 4px 12px rgba(28, 25, 23, 0.10), 0 2px 4px rgba(28, 25, 23, 0.06);
     --shadow-lg:      0 10px 30px rgba(28, 25, 23, 0.12), 0 4px 10px rgba(28, 25, 23, 0.06);
     --shadow-xl:      0 20px 50px rgba(28, 25, 23, 0.15), 0 8px 20px rgba(28, 25, 23, 0.08);
-    --shadow-accent:  0 8px 24px rgba(184, 92, 56, 0.30);   /* terracota glow for CTA hover */
+    --shadow-accent:  0 8px 24px rgba(23, 91, 91, 0.30);    /* teal glow for CTA hover */
     --shadow-inset:   inset 0 2px 4px rgba(28, 25, 23, 0.06);
     --shadow-none:    none;
 
@@ -242,12 +242,12 @@
     --text-inverse:    #1C1917;
 
     /* Brand — slightly lifted for dark bg */
-    --color-terracota:       #C9724D;   /* slightly brighter on dark */
-    --color-terracota-hover: #D98260;
-    --color-terracota-light: #E09A7B;
-    --color-salvia:          #8FA08A;
-    --color-salvia-hover:    #A3B59E;
-    --color-salvia-light:    #B8C9B4;
+    --color-terracota:       #1e7a7a;   /* lifted teal — primary CTA on dark */
+    --color-terracota-hover: #268888;
+    --color-terracota-light: #5d9a96;
+    --color-salvia:          #5f9490;   /* mid teal on dark */
+    --color-salvia-hover:    #72a8a4;
+    --color-salvia-light:    #8cb4b4;
 
     /* Semantic */
     --color-success:         #6E9470;

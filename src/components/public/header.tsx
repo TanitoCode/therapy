@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { MobileMenu } from './mobile-menu'
@@ -48,19 +49,24 @@ export function Header() {
         <Link
           href="/"
           aria-label="Therapy — Página de inicio"
-          className="group flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-terracota)]"
+          className="group focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-terracota)]"
         >
-          {/* Wordmark — editorial serif + sans pairing */}
-          <span className="font-[family-name:var(--font-fraunces)] text-xl font-light tracking-[-0.02em] text-[var(--text-emphasis)] transition-opacity duration-200 group-hover:opacity-80">
-            Therapy
-          </span>
-          <span
-            aria-hidden
-            className="h-4 w-px bg-[var(--border-color)] opacity-60"
+          <Image
+            src="/logoTherapy.png"
+            alt="Therapy Kinesiología"
+            height={48}
+            width={200}
+            className="hidden h-12 w-auto transition-opacity duration-200 group-hover:opacity-80 md:block"
+            priority
           />
-          <span className="font-[family-name:var(--font-plus-jakarta)] text-xs font-medium tracking-[0.08em] text-[var(--text-tertiary)] uppercase transition-opacity duration-200 group-hover:opacity-80">
-            Kinesiología
-          </span>
+          <Image
+            src="/logoTherapy2.png"
+            alt="Therapy Kinesiología"
+            height={40}
+            width={40}
+            className="block h-10 w-auto transition-opacity duration-200 group-hover:opacity-80 md:hidden"
+            priority
+          />
         </Link>
 
         {/* Desktop nav */}

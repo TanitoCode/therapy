@@ -100,7 +100,7 @@ export function CalendarStep() {
         className="grid gap-6 lg:grid-cols-[auto_1fr] lg:items-start"
       >
         {/* ── Calendar ── */}
-        <div className="overflow-hidden rounded-[var(--radius-lg)] border border-[var(--border-color-subtle)] bg-[var(--bg-canvas)] p-3">
+        <div className="w-full min-w-[300px] overflow-hidden rounded-[var(--radius-lg)] border border-[var(--border-color-subtle)] bg-[var(--bg-canvas)] p-3 lg:w-[380px]">
           <Calendar
             mode="single"
             locale={es}
@@ -108,6 +108,7 @@ export function CalendarStep() {
             onSelect={(date) => date && setDate(format(date, 'yyyy-MM-dd'))}
             disabled={(date: Date) => date < today || isWeekend(date)}
             startMonth={new Date()}
+            classNames={{ root: "w-full" }}
           />
         </div>
 

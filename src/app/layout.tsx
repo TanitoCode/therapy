@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Therapy — Consultorio de Kinesiología',
   description:
     'Sistema de turnos online para consultorio de kinesiología en Buenos Aires.',
+  icons: {
+    icon: '/logoTherapy2.png',
+  },
 }
 
 export default function RootLayout({

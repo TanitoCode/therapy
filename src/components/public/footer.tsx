@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '/' },
@@ -35,16 +36,16 @@ export function Footer() {
           <div>
             <Link
               href="/"
-              className="mb-4 inline-flex items-center gap-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-terracota)]"
+              className="mb-4 inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-terracota)]"
               aria-label="Therapy — Página de inicio"
             >
-              <span className="font-[family-name:var(--font-fraunces)] text-xl font-light tracking-[-0.02em] text-[var(--text-emphasis)]">
-                Therapy
-              </span>
-              <span aria-hidden className="h-4 w-px bg-[var(--border-color)] opacity-60" />
-              <span className="font-[family-name:var(--font-plus-jakarta)] text-xs font-medium tracking-[0.08em] text-[var(--text-tertiary)] uppercase">
-                Kinesiología
-              </span>
+              <Image
+                src="/logoTherapy.png"
+                alt="Therapy Kinesiología"
+                height={40}
+                width={160}
+                className="h-10 w-auto"
+              />
             </Link>
 
             <p className="mt-4 max-w-[28ch] font-[family-name:var(--font-plus-jakarta)] text-sm leading-relaxed text-[var(--text-secondary)]">
